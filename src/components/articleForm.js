@@ -43,7 +43,7 @@ export default function ArticleForm({ edit }) {
 
   const validationSchema = object({
     title: string().required(),
-    description: string(),
+    description: string().required(),
     body: string().required(),
     tagList: string(),
   });

@@ -7,6 +7,9 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: theme.spacing(1),
     },
   },
+  warning: {
+    margin: "10px 0 0 20px",
+  },
 }));
 
 export default function FeedList({ list }) {
@@ -14,9 +17,13 @@ export default function FeedList({ list }) {
 
   return (
     <ul className={classes.root}>
-      {list.map((article) => {
-        return <ArticlePreview article={article} key={article.slug} />;
-      })}
+      {list.length > 0 ? (
+        list.map((article) => {
+          return <ArticlePreview article={article} key={article.slug} />;
+        })
+      ) : (
+        <p className={classes.warning}>There are no articles yet.</p>
+      )}
     </ul>
   );
 }

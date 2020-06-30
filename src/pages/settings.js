@@ -59,10 +59,12 @@ export default () => {
   };
 
   useEffect(() => {
-    if (!currentUserState.currentUser) {
+    if (currentUserState.isLoggedIn === false) {
       Router.push("/login");
       return;
     }
+
+    if (!currentUserState.currentUser) return;
 
     const { currentUser } = currentUserState;
 

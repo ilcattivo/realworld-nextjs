@@ -48,8 +48,16 @@ const articleApi = {
       author,
       offset: 0,
     });
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    if (token) {
+      headers.Authorization = `Token ${token}`;
+    }
     return axios
-      .get(`${API_BASE}/articles?${stringifiedParams}`)
+      .get(`${API_BASE}/articles?${stringifiedParams}`, {
+        headers,
+      })
       .then((res) => res.data);
   },
   getFavoritedArticles: (username) => {

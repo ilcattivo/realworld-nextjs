@@ -29,7 +29,7 @@ const userApi = {
   },
   register: (user) => {
     return axios
-      .post(`${API_BASE}/users/login`, { user })
+      .post(`${API_BASE}/users`, { user })
       .catch((err) => err.response);
   },
   follow: (username) => {

@@ -60,24 +60,16 @@ export default ({ login, signup }) => {
 
   const validationSchema = login
     ? object({
-        email: string()
-          .required("Это поле обязательно")
-          .email("Некорректно введен Email"),
-        password: string().required("Это поле обязательно"),
+        email: string().required().email(),
+        password: string().required(),
       })
     : object({
-        username: string()
-          .required("Это поле обязательно")
-          .min(3, "Введите минимум 3 символа"),
-        email: string()
-          .required("Это поле обязательно")
-          .email("Некорректно введен Email"),
-        password: string()
-          .required("Это поле обязательно")
-          .min(8, "Пароль должен содежрать минимум 8 символов"),
+        username: string().required().min(3),
+        email: string().required().email(),
+        password: string().required().min(8),
         confirmPassword: string()
-          .required("Это поле обязательно")
-          .oneOf([ref("password")], "Пароли должны совпадать"),
+          .required()
+          .oneOf([ref("password")]),
       });
 
   const handleSubmit = async (data) => {

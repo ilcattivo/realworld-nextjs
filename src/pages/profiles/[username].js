@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import Router from "next/router";
 import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
 import EditIcon from "@material-ui/icons/Edit";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { CurrentUserContext } from "../../libs/contexts/currentUser";
@@ -8,6 +9,7 @@ import { CurrentFeedContext } from "../../libs/contexts/currentFeed";
 import useLocalStorage from "../../libs/hooks/useLocalStorage";
 import userApi from "../../libs/api/user";
 import articleApi from "../../libs/api/article";
+import { DEFAULT_PROFILE_IMAGE } from "../../libs/utils/constants";
 import MyButton from "../../components/myButton";
 import FeedToggler from "../../components/feedToggler";
 import FeedList from "../../components/feedList";
@@ -53,7 +55,7 @@ export default function ProfilePage({ initialProfile }) {
   }, [feed]);
 
   const tabs = [
-    { label: "My Articles", value: "user" },
+    { label: isOwner ? "My Articles" : "User Articles", value: "user" },
     { label: "Favorited Articles", value: "favorited" },
   ];
 
@@ -87,7 +89,7 @@ export default function ProfilePage({ initialProfile }) {
         <div className="container">
           <div className={styles.userInfo}>
             <img
-              src={profile.image}
+              src={profile.image || DEFAULT_PROFILE_IMAGE}
               className={styles.avatar}
               alt="Profile image"
             />
@@ -111,10 +113,10 @@ export default function ProfilePage({ initialProfile }) {
             ) : (
               <MyButton
                 onClick={follow}
-                icon={AddIcon}
+                icon={following ? RemoveIcon : AddIcon}
                 variant={following ? "contained" : "outlined"}
               >
-                Follow
+                {following ? "Unfollow" : "Follow"}
               </MyButton>
             )}
           </div>
