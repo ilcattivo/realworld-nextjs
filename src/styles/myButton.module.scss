@@ -1,0 +1,38 @@
+.button {
+  display: inline-block;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 0.25rem 0.4rem;
+  border-radius: 0.2rem;
+  font-size: 0.9rem;
+  line-height: 1.3;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.grey {
+  @extend .button;
+  color: #838383;
+  border-color: #838383;
+  &:hover {
+    color: #ffffff;
+    background-color: #838383;
+  }
+}
+
+.red {
+  @extend .button;
+  color: #b85c5c;
+  border-color: #b85c5c;
+  &:hover {
+    color: #ffffff;
+    background-color: #b85c5c;
+  }
+}
+
+.greyContained {
+  @extend .grey;
+  background-color: #838383;
+  color: #ffffff;
+}
